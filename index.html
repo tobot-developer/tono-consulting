@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tono Consulting GmbH | Strategische IT-Beratung</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #1a365d;
+            --secondary: #2563eb;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #1a365d 0%, #2563eb 100%);
+        }
+        
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); line-height: 1.6; }
+        
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+        
+        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 2rem; }
+        .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .hero .subtitle { font-size: 1.5rem; opacity: 0.9; margin-bottom: 2rem; font-weight: 300; }
+        .hero .tagline { font-size: 1.1rem; opacity: 0.8; margin-bottom: 3rem; }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--secondary); }
+        
+        /* Sections */
+        section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .service-card p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: var(--gradient);
+            color: white;
+            padding: 5rem 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .about-text p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            background: var(--gradient);
+            border-radius: 1rem;
+            padding: 3rem;
+            color: white;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--light);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .contact-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .contact-item a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subtitle { font-size: 1.1rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            section { padding: 4rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Tono Consulting</div>
+        <div class="nav-links">
+            <a href="#leistungen">Leistungen</a>
+            <a href="#ueber-uns">Über uns</a>
+            <a href="#kontakt">Kontakt</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Tono Consulting GmbH</h1>
+            <p class="subtitle">Strategische IT-Beratung für die digitale Zukunft</p>
+            <p class="tagline">Wir transformieren Unternehmen durch innovative Technologielösungen und digitale Strategien</p>
+            <a href="#kontakt" class="cta-button">Kostenloses Erstgespräch</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="leistungen">
+        <h2 class="section-title">Unsere Leistungen</h2>
+        <p class="section-subtitle">Maßgeschneiderte Lösungen für Ihre digitale Transformation</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>KI & Automation</h3>
+                <p>Implementierung von KI-Lösungen, Automatisierung von Geschäftsprozessen und Integration von AI-Tools zur Effizienzsteigerung.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>IT-Strategieberatung</h3>
+                <p>Entwicklung von IT-Roadmaps, Digitalisierungsstrategien und Technologie-Assessments für nachhaltiges Wachstum.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Prozessoptimierung</h3>
+                <p>Analyse und Optimierung von Geschäftsprozessen durch digitale Lösungen und agile Methoden.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>IT-Security</h3>
+                <p>Sicherheitsaudits, Compliance-Beratung und Implementierung von Datenschutzmaßnahmen nach DSGVO.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Digitale Transformation</h3>
+                <p>Begleitung bei der digitalen Transformation durch Change Management und Technologie-Integration.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Cloud-Lösungen</h3>
+                <p>Cloud-Migration, SaaS-Implementierungen und hybride Infrastrukturlösungen für maximale Flexibilität.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Erfolgreiche Projekte</p>
+            </div>
+            
+            <div class="stat-item">
+                <h3>98%</h3>
+                <p>Kundenzufriedenheit</p>
+            </div>
+            
+            <div class="stat-item">
+                <h3>15+</h3>
+                <p>Jahre Erfahrung</p>
+            </div>
+            
+            <div class="stat-item">
+                <h3>30%</h3>
+                <p>Durchschnittliche Effizienzsteigerung</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="ueber-uns">
+        <h2 class="section-title">Über uns</h2>
+        <p class="section-subtitle">Ihr Partner für digitale Exzellenz im Rheinland</p>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Vom IT-Consultant zum KI-Pionier</h3>
+                <p>Tono Consulting GmbH wurde mit einer klaren Vision gegründet: Unternehmen dabei zu helfen, das volle Potenzial digitaler Technologien auszuschöpfen. Basierend in Düsseldorf beraten wir Kunden im gesamten Rheinland.</p>
+                
+                <p>Unser Gründer bringt umfassende Erfahrung aus der Strategieberatung und leidenschaftliches Interesse für KI und digitale Innovation ein. Wir verstehen die Herausforderungen mittelständischer Unternehmen genauso wie die Anforderungen großer Konzerne.</p>
+                
+                <p>Unser Ansatz ist pragmatisch: Wir identifizieren schnell Hebel für digitale Verbesserungen und implementieren Lösungen, die messbare Ergebnisse liefern – von KI-gestützter Prozessautomatisierung bis zur strategischen IT-Roadmap.</p>
+            </div>
+            
+            <div class="about-image">
+                <div>
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎯</div>
+                    <p style="font-size: 1.3rem; font-weight: 600;">Strategie trifft Technologie</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontakt" class="contact-section">
+        <h2 class="section-title">Kontakt</h2>
+        <p class="section-subtitle">Lassen Sie uns über Ihr nächstes Projekt sprechen</p>
+        
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📧</div>
+                <h3>E-Mail</h3>
+                <p><a href="mailto:info@tono-consulting.de">info@tono-consulting.de</a></p>
+            </div>
+            
+            <div class="contact-item">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📍</div>
+                <h3>Standort</h3>
+                <p>Düsseldorf, NRW</p>
+            </div>
+            
+            <div class="contact-item">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">💼</div>
+                <h3>LinkedIn</h3>
+                <p><a href="#" target="_blank">Tono Consulting</a></p>
+            </div>
+            
+            <div class="contact-item">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📅</div>
+                <h3>Termin vereinbaren</h3>
+                <p><a href="#">Kostenloses Erstgespräch buchen</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Tono Consulting GmbH</strong> | Düsseldorf, Deutschland</p>
+        <p style="margin-top: 1rem;">© 2026 Tono Consulting GmbH. Alle Rechte vorbehalten. | <a href="#" style="color: white;">Impressum</a> | <a href="#" style="color: white;">Datenschutz</a></p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
