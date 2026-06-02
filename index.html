@@ -8,25 +8,100 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --primary: #1a365d;
-            --secondary: #2563eb;
-            --accent: #3b82f6;
-            --text: #1f2937;
-            --light: #f8fafc;
-            --gradient: linear-gradient(135deg, #1a365d 0%, #2563eb 100%);
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --text: #333;
+            --text-light: #666;
+            --bg: #fafafa;
+            --white: #ffffff;
+            --gold: #c9a96e;
         }
         
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); line-height: 1.6; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg);
+        }
+        
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 0 2rem;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            box-shadow: 0 2px 30px rgba(0,0,0,0.08);
+        }
+        
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        
+        .logo span {
+            color: var(--gold);
+            font-weight: 400;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
         
         /* Hero Section */
         .hero {
-            background: var(--gradient);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             position: relative;
             overflow: hidden;
         }
@@ -35,112 +110,171 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.1;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.3;
         }
         
-        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 2rem; }
-        .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
-        .hero .subtitle { font-size: 1.5rem; opacity: 0.9; margin-bottom: 2rem; font-weight: 300; }
-        .hero .tagline { font-size: 1.1rem; opacity: 0.8; margin-bottom: 3rem; }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        
+        .hero h1 strong {
+            font-weight: 700;
+            display: block;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
         
         .cta-button {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: white;
-            color: var(--primary);
+            background: transparent;
+            color: var(--white);
             text-decoration: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 2px solid var(--gold);
+            border-radius: 0;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
         }
         
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-        
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--secondary); }
-        
-        /* Sections */
-        section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
-        
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1rem;
+            background: var(--gold);
             color: var(--primary);
         }
         
-        .section-subtitle {
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
             text-align: center;
-            color: #6b7280;
             margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            display: block;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            color: var(--text-light);
             font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
         }
         
         /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
         
         .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            border: 1px solid #e5e7eb;
+            background: var(--white);
+            padding: 3rem;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            width: 100%;
         }
         
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
         
-        .service-icon {
-            font-size: 3rem;
+        .service-number {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
         }
         
         .service-card h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             color: var(--primary);
+            font-weight: 600;
         }
         
         .service-card p {
-            color: #6b7280;
+            color: var(--text-light);
             line-height: 1.7;
+            font-size: 0.95rem;
         }
         
         /* Stats Section */
         .stats-section {
-            background: var(--gradient);
-            color: white;
+            background: var(--primary);
+            color: var(--white);
             padding: 5rem 2rem;
         }
         
@@ -155,20 +289,23 @@
         
         .stat-item h3 {
             font-size: 3.5rem;
-            font-weight: 800;
+            font-weight: 300;
             margin-bottom: 0.5rem;
+            color: var(--gold);
         }
         
         .stat-item p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 0.95rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 6rem;
             align-items: center;
             margin-top: 3rem;
         }
@@ -177,141 +314,229 @@
             font-size: 2rem;
             margin-bottom: 1.5rem;
             color: var(--primary);
+            font-weight: 300;
         }
         
         .about-text p {
-            color: #6b7280;
+            color: var(--text-light);
             margin-bottom: 1.5rem;
             line-height: 1.8;
+            font-size: 1.05rem;
         }
         
         .about-image {
-            background: var(--gradient);
-            border-radius: 1rem;
-            padding: 3rem;
-            color: white;
-            text-align: center;
-            min-height: 300px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 0;
+            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.02) 10px,
+                rgba(255,255,255,0.02) 20px
+            );
+            animation: move 20s linear infinite;
+        }
+        
+        @keyframes move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .about-image-content {
+            position: relative;
+            z-index: 1;
+            padding: 3rem;
+        }
+        
+        .about-image-content h4 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        
+        .about-image-content p {
+            opacity: 0.8;
+            font-size: 1.1rem;
         }
         
         /* Contact Section */
         .contact-section {
-            background: var(--light);
+            background: var(--bg);
         }
         
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            gap: 0;
             margin-top: 3rem;
+            border: 1px solid rgba(0,0,0,0.06);
         }
         
         .contact-item {
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
+            border-right: 1px solid rgba(0,0,0,0.06);
+            transition: background 0.3s ease;
+        }
+        
+        .contact-item:last-child {
+            border-right: none;
+        }
+        
+        .contact-item:hover {
+            background: var(--white);
         }
         
         .contact-item h3 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
             color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
         
         .contact-item a {
-            color: var(--secondary);
+            color: var(--text-light);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         
         .contact-item a:hover {
-            text-decoration: underline;
+            color: var(--gold);
         }
         
         /* Footer */
         footer {
             background: var(--primary);
-            color: white;
+            color: rgba(255,255,255,0.6);
             text-align: center;
             padding: 3rem 2rem;
+            font-size: 0.9rem;
         }
         
-        footer p {
-            opacity: 0.8;
+        footer a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: var(--gold);
+        }
+        
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .hero .subtitle { font-size: 1.1rem; }
-            .about-content { grid-template-columns: 1fr; }
+            .about-content { grid-template-columns: 1fr; gap: 3rem; }
+            .services-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
-            section { padding: 4rem 1.5rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
-        <div class="logo">Tono Consulting</div>
-        <div class="nav-links">
-            <a href="#leistungen">Leistungen</a>
-            <a href="#ueber-uns">Über uns</a>
-            <a href="#kontakt">Kontakt</a>
-        </div>
+    <nav id="navbar">
+        <div class="logo">Tono <span>Consulting</span></div>
+        <ul class="nav-links">
+            <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#ueber-uns">Über uns</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Tono Consulting GmbH</h1>
-            <p class="subtitle">Strategische IT-Beratung für die digitale Zukunft</p>
-            <p class="tagline">Wir transformieren Unternehmen durch innovative Technologielösungen und digitale Strategien</p>
-            <a href="#kontakt" class="cta-button">Kostenloses Erstgespräch</a>
+            <h1>
+                Strategische IT-Beratung
+                <strong>für die digitale Zukunft</strong>
+            </h1>
+            <p class="subtitle">
+                Wir transformieren Unternehmen durch innovative Technologielösungen 
+                und digitale Strategien
+            </p>
+            <a href="#kontakt" class="cta-button">Erstgespräch vereinbaren</a>
         </div>
     </section>
 
     <!-- Services Section -->
     <section id="leistungen">
-        <h2 class="section-title">Unsere Leistungen</h2>
-        <p class="section-subtitle">Maßgeschneiderte Lösungen für Ihre digitale Transformation</p>
+        <div class="section-header fade-in">
+            <span class="section-label">Leistungen</span>
+            <h2 class="section-title">Was wir anbieten</h2>
+            <p class="section-subtitle">
+                Maßgeschneiderte Lösungen für Ihre digitale Transformation
+            </p>
+        </div>
         
         <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🤖</div>
+            <div class="service-card fade-in">
+                <div class="service-number">01</div>
                 <h3>KI & Automation</h3>
-                <p>Implementierung von KI-Lösungen, Automatisierung von Geschäftsprozessen und Integration von AI-Tools zur Effizienzsteigerung.</p>
+                <p>Implementierung von KI-Lösungen und Automatisierung von Geschäftsprozessen zur Effizienzsteigerung.</p>
             </div>
             
-            <div class="service-card">
-                <div class="service-icon">📊</div>
+            <div class="service-card fade-in">
+                <div class="service-number">02</div>
                 <h3>IT-Strategieberatung</h3>
-                <p>Entwicklung von IT-Roadmaps, Digitalisierungsstrategien und Technologie-Assessments für nachhaltiges Wachstum.</p>
+                <p>Entwicklung von IT-Roadmaps und Digitalisierungsstrategien für nachhaltiges Wachstum.</p>
             </div>
             
-            <div class="service-card">
-                <div class="service-icon">⚡</div>
+            <div class="service-card fade-in">
+                <div class="service-number">03</div>
                 <h3>Prozessoptimierung</h3>
-                <p>Analyse und Optimierung von Geschäftsprozessen durch digitale Lösungen und agile Methoden.</p>
+                <p>Analyse und Optimierung von Geschäftsprozessen durch digitale Lösungen.</p>
             </div>
             
-            <div class="service-card">
-                <div class="service-icon">🛡️</div>
+            <div class="service-card fade-in">
+                <div class="service-number">04</div>
                 <h3>IT-Security</h3>
-                <p>Sicherheitsaudits, Compliance-Beratung und Implementierung von Datenschutzmaßnahmen nach DSGVO.</p>
+                <p>Sicherheitsaudits, Compliance-Beratung und Datenschutz nach DSGVO.</p>
             </div>
             
-            <div class="service-card">
-                <div class="service-icon">🚀</div>
+            <div class="service-card fade-in">
+                <div class="service-number">05</div>
                 <h3>Digitale Transformation</h3>
-                <p>Begleitung bei der digitalen Transformation durch Change Management und Technologie-Integration.</p>
+                <p>Begleitung bei der digitalen Transformation durch Change Management.</p>
             </div>
             
-            <div class="service-card">
-                <div class="service-icon">📱</div>
+            <div class="service-card fade-in">
+                <div class="service-number">06</div>
                 <h3>Cloud-Lösungen</h3>
-                <p>Cloud-Migration, SaaS-Implementierungen und hybride Infrastrukturlösungen für maximale Flexibilität.</p>
+                <p>Cloud-Migration und hybride Infrastrukturlösungen für maximale Flexibilität.</p>
             </div>
         </div>
     </section>
@@ -319,47 +544,62 @@
     <!-- Stats Section -->
     <section class="stats-section">
         <div class="stats-grid">
-            <div class="stat-item">
+            <div class="stat-item fade-in">
                 <h3>50+</h3>
                 <p>Erfolgreiche Projekte</p>
             </div>
             
-            <div class="stat-item">
+            <div class="stat-item fade-in">
                 <h3>98%</h3>
                 <p>Kundenzufriedenheit</p>
             </div>
             
-            <div class="stat-item">
+            <div class="stat-item fade-in">
                 <h3>15+</h3>
                 <p>Jahre Erfahrung</p>
             </div>
             
-            <div class="stat-item">
+            <div class="stat-item fade-in">
                 <h3>30%</h3>
-                <p>Durchschnittliche Effizienzsteigerung</p>
+                <p>Effizienzsteigerung</p>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="ueber-uns">
-        <h2 class="section-title">Über uns</h2>
-        <p class="section-subtitle">Ihr Partner für digitale Exzellenz im Rheinland</p>
+        <div class="section-header fade-in">
+            <span class="section-label">Über uns</span>
+            <h2 class="section-title">Wir sind Tono Consulting</h2>
+        </div>
         
         <div class="about-content">
-            <div class="about-text">
+            <div class="about-text fade-in">
                 <h3>Vom IT-Consultant zum KI-Pionier</h3>
-                <p>Tono Consulting GmbH wurde mit einer klaren Vision gegründet: Unternehmen dabei zu helfen, das volle Potenzial digitaler Technologien auszuschöpfen. Basierend in Düsseldorf beraten wir Kunden im gesamten Rheinland.</p>
-                
-                <p>Unser Gründer bringt umfassende Erfahrung aus der Strategieberatung und leidenschaftliches Interesse für KI und digitale Innovation ein. Wir verstehen die Herausforderungen mittelständischer Unternehmen genauso wie die Anforderungen großer Konzerne.</p>
-                
-                <p>Unser Ansatz ist pragmatisch: Wir identifizieren schnell Hebel für digitale Verbesserungen und implementieren Lösungen, die messbare Ergebnisse liefern – von KI-gestützter Prozessautomatisierung bis zur strategischen IT-Roadmap.</p>
+                <p>
+                    Tono Consulting GmbH wurde mit einer klaren Vision gegründet: 
+                    Unternehmen dabei zu helfen, das volle Potenzial digitaler 
+                    Technologien auszuschöpfen.
+                </p>
+                <p>
+                    Basierend in Düsseldorf beraten wir Kunden im gesamten Rheinland 
+                    und darüber hinaus. Unser Team bringt umfassende Erfahrung aus 
+                    der Strategieberatung und tiefgreifendes Know-how in KI und 
+                    digitale Innovation ein.
+                </p>
+                <p>
+                    Wir verstehen die Herausforderungen mittelständischer Unternehmen 
+                    genauso wie die Anforderungen großer Konzerne. Unser Ansatz ist 
+                    pragmatisch: Wir identifizieren schnell Hebel für digitale 
+                    Verbesserungen und implementieren Lösungen, die messbare 
+                    Ergebnisse liefern.
+                </p>
             </div>
             
-            <div class="about-image">
-                <div>
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎯</div>
-                    <p style="font-size: 1.3rem; font-weight: 600;">Strategie trifft Technologie</p>
+            <div class="about-image fade-in">
+                <div class="about-image-content">
+                    <h4>Strategie trifft Technologie</h4>
+                    <p>Gemeinsam gestalten wir Ihre digitale Zukunft</p>
                 </div>
             </div>
         </div>
@@ -367,46 +607,64 @@
 
     <!-- Contact Section -->
     <section id="kontakt" class="contact-section">
-        <h2 class="section-title">Kontakt</h2>
-        <p class="section-subtitle">Lassen Sie uns über Ihr nächstes Projekt sprechen</p>
+        <div class="section-header fade-in">
+            <span class="section-label">Kontakt</span>
+            <h2 class="section-title">Lassen Sie uns sprechen</h2>
+            <p class="section-subtitle">
+                Bereit für Ihre digitale Transformation? Kontaktieren Sie uns für ein 
+                unverbindliches Erstgespräch.
+            </p>
+        </div>
         
-        <div class="contact-grid">
+        <div class="contact-grid fade-in">
             <div class="contact-item">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">📧</div>
                 <h3>E-Mail</h3>
-                <p><a href="mailto:info@tono-consulting.de">info@tono-consulting.de</a></p>
+                <a href="mailto:info@tono-consulting.de">info@tono-consulting.de</a>
             </div>
             
             <div class="contact-item">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">📍</div>
                 <h3>Standort</h3>
-                <p>Düsseldorf, NRW</p>
+                <a href="#">Düsseldorf, NRW</a>
             </div>
             
             <div class="contact-item">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">💼</div>
                 <h3>LinkedIn</h3>
-                <p><a href="#" target="_blank">Tono Consulting</a></p>
+                <a href="#" target="_blank">Tono Consulting</a>
             </div>
             
             <div class="contact-item">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">📅</div>
-                <h3>Termin vereinbaren</h3>
-                <p><a href="#">Kostenloses Erstgespräch buchen</a></p>
+                <h3>Termin</h3>
+                <a href="#">Erstgespräch buchen</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p><strong>Tono Consulting GmbH</strong> | Düsseldorf, Deutschland</p>
-        <p style="margin-top: 1rem;">© 2026 Tono Consulting GmbH. Alle Rechte vorbehalten. | <a href="#" style="color: white;">Impressum</a> | <a href="#" style="color: white;">Datenschutz</a></p>
+        <p>
+            <strong>Tono Consulting GmbH</strong> | Düsseldorf, Deutschland
+        </p>
+        <p style="margin-top: 1rem;">
+            <a href="#">Impressum</a>
+            <a href="#">Datenschutz</a>
+            <a href="#">AGB</a>
+        </p>
     </footer>
 
     <script>
-        // Smooth scroll for navigation links
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -416,6 +674,24 @@
                     });
                 }
             });
+        });
+        
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
